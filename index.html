@@ -6,7 +6,7 @@
 <title>Deekshith Naik — Supply Chain &amp; Operations Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0a0a09;
@@ -310,6 +310,49 @@
   .chat-input-row input{ flex:1; border:none; background:transparent; padding:14px 16px; font-family:'Inter',sans-serif; font-size:13.5px; outline:none; color:var(--ink); }
   .chat-input-row button{ background:var(--ink); color:var(--paper); border:none; padding:0 20px; cursor:pointer; font-weight:700; font-size:12px; text-transform:uppercase; }
   @media(max-width:480px){ #chat-panel{ width:calc(100vw - 24px); right:12px; bottom:90px; } #chat-toggle{ right:16px; bottom:16px; } }
+
+  /* ---------- LANGUAGE SWITCHER ---------- */
+  .lang-switch{
+    display:flex; align-items:center; gap:2px;
+    background:rgba(244,240,230,.06); border:1px solid var(--line-b);
+    padding:4px; border-radius:999px;
+  }
+  .lang-switch button{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.04em;
+    color:var(--muted-b); background:none; border:none; padding:6px 9px; border-radius:999px;
+    cursor:pointer; transition:.2s;
+  }
+  .lang-switch button:hover{ color:var(--cream); }
+  .lang-switch button.active{ background:var(--orange); color:#fff; }
+  @media(max-width:560px){ .lang-switch{ order:3; } }
+
+  /* ---------- RTL SUPPORT ---------- */
+  html[dir="rtl"] ul.bullets li{ padding-left:0; padding-right:16px; }
+  html[dir="rtl"] ul.bullets li::before{ left:auto; right:0; content:'—'; }
+  html[dir="rtl"] .job-head,
+  html[dir="rtl"] .loader-brand,
+  html[dir="rtl"] #dock,
+  html[dir="rtl"] .sec-head,
+  html[dir="rtl"] .contact-row,
+  html[dir="rtl"] .hero-cta{ flex-direction:row-reverse; }
+  html[dir="rtl"] .cert-item{ flex-direction:row-reverse; }
+  html[dir="rtl"] .live-badge{ flex-direction:row-reverse; }
+  html[dir="rtl"] .cat-label,
+  html[dir="rtl"] .eyebrow,
+  html[dir="rtl"] .role-title,
+  html[dir="rtl"] .job-dates,
+  html[dir="rtl"] .edu-years{ letter-spacing:0; }
+
+  /* language-specific type */
+  body.lang-ar, body.lang-ar .name, body.lang-ar h1, body.lang-ar h2, body.lang-ar h3{ font-family:'Noto Kufi Arabic','Inter',sans-serif; }
+  body.lang-ar .name .last{ font-style:normal; }
+  body.lang-ur, body.lang-ur .name, body.lang-ur h1, body.lang-ur h2, body.lang-ur h3{ font-family:'Noto Nastaliq Urdu','Inter',sans-serif; }
+  body.lang-ur .name .last{ font-style:normal; }
+  body.lang-ur{ line-height:2; }
+  body.lang-hi, body.lang-hi .name{ font-family:'Noto Sans Devanagari','Inter',sans-serif; }
+  body.lang-ar, body.lang-ur, body.lang-hi{ }
+  body.lang-ar p, body.lang-ar li, body.lang-ar div, body.lang-ar span, body.lang-ar a,
+  body.lang-ur p, body.lang-ur li, body.lang-ur div, body.lang-ur span, body.lang-ur a{ font-family:inherit; }
 </style>
 </head>
 <body>
@@ -351,12 +394,19 @@
 <div id="dock">
   <div class="brand-pill">Deenaik<span class="dot">.</span></div>
   <nav class="navlinks">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#credentials">Credentials</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" data-i18n="nav_about">About</a>
+    <a href="#experience" data-i18n="nav_experience">Experience</a>
+    <a href="#skills" data-i18n="nav_skills">Skills</a>
+    <a href="#credentials" data-i18n="nav_credentials">Credentials</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
   </nav>
+  <div class="lang-switch" id="langSwitch">
+    <button data-lang="en" class="active">EN</button>
+    <button data-lang="ar">AR</button>
+    <button data-lang="hi">HI</button>
+    <button data-lang="ru">RU</button>
+    <button data-lang="ur">UR</button>
+  </div>
   <div class="live-badge">
     <svg viewBox="0 0 27 18"><rect width="27" height="6" y="0" fill="#00732f"/><rect width="27" height="6" y="6" fill="#fff"/><rect width="27" height="6" y="12" fill="#000"/><rect width="7" height="18" fill="#ff0000"/></svg>
     <span id="liveClock">--:--:--</span>
@@ -367,18 +417,18 @@
 
 <header>
   <div class="wrap">
-    <div class="eyebrow">Supply Chain &amp; Operations Manager</div>
-    <div class="joiner-line"><span class="strobe"></span> Immediate Joiner</div>
+    <div class="eyebrow" data-i18n="hero_eyebrow">Supply Chain &amp; Operations Manager</div>
+    <div class="joiner-line"><span class="strobe"></span> <span data-i18n="hero_joiner">Immediate Joiner</span></div>
     <h1 class="name">Deekshith<span class="last">Naik</span></h1>
-    <div class="role-title">Dubai / Abu Dhabi, UAE</div>
-    <p class="hero-desc">Building resilient, cost-efficient operations across procurement, warehousing and e-commerce — turning inventory chaos into 95%+ accuracy and manual reports into automated dashboards.</p>
+    <div class="role-title" data-i18n="hero_role">Dubai / Abu Dhabi, UAE</div>
+    <p class="hero-desc" data-i18n="hero_desc">Building resilient, cost-efficient operations across procurement, warehousing and e-commerce — turning inventory chaos into 95%+ accuracy and manual reports into automated dashboards.</p>
 
     <div class="hero-cta">
       <a class="btn btn-primary" href="Deekshith_Naik_CV.pdf" download onclick="return checkDownloadPassword(event, 'hero-button')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        Download CV
+        <span data-i18n="btn_download">Download CV</span>
       </a>
-      <a class="btn btn-ghost" href="#experience">View Experience</a>
+      <a class="btn btn-ghost" href="#experience" data-i18n="btn_view_exp">View Experience</a>
     </div>
 
     <div class="contact-row">
@@ -388,10 +438,10 @@
     </div>
 
     <div class="stat-row">
-      <div class="stat-cell"><div class="stat-n">2,000<small>+</small></div><div class="stat-l">SKUs Managed</div></div>
-      <div class="stat-cell"><div class="stat-n">AED 700<small>K</small></div><div class="stat-l">Monthly Budget</div></div>
-      <div class="stat-cell"><div class="stat-n">95<small>%+</small></div><div class="stat-l">Inventory Accuracy</div></div>
-      <div class="stat-cell"><div class="stat-n">80<small>%</small></div><div class="stat-l">Work Automated</div></div>
+      <div class="stat-cell"><div class="stat-n">2,000<small>+</small></div><div class="stat-l" data-i18n="stat_skus">SKUs Managed</div></div>
+      <div class="stat-cell"><div class="stat-n">AED 700<small>K</small></div><div class="stat-l" data-i18n="stat_budget">Monthly Budget</div></div>
+      <div class="stat-cell"><div class="stat-n">95<small>%+</small></div><div class="stat-l" data-i18n="stat_accuracy">Inventory Accuracy</div></div>
+      <div class="stat-cell"><div class="stat-n">80<small>%</small></div><div class="stat-l" data-i18n="stat_automated">Work Automated</div></div>
     </div>
   </div>
 </header>
@@ -399,10 +449,10 @@
 <div class="wrap">
 
   <section id="about">
-    <div class="sec-head"><span class="sec-num">01</span><div class="sec-title">Summary</div><div class="sec-rule"></div></div>
+    <div class="sec-head"><span class="sec-num">01</span><div class="sec-title" data-i18n="sec_about_title">Summary</div><div class="sec-rule"></div></div>
     <div class="paper summary">
-      <p>Results-driven Supply Chain &amp; Operations Manager with extensive experience in <b>procurement</b>, <b>warehouse operations</b>, and <b>inventory management</b>. Proven ability to optimize procurement costs, streamline warehouse processes, and maintain accurate inventory control across physical, retail, and e-commerce channels.</p>
-      <div class="tags">
+      <p data-i18n="about_summary">Results-driven Supply Chain &amp; Operations Manager with extensive experience in <b>procurement</b>, <b>warehouse operations</b>, and <b>inventory management</b>. Proven ability to optimize procurement costs, streamline warehouse processes, and maintain accurate inventory control across physical, retail, and e-commerce channels.</p>
+      <div class="tags" data-i18n="about_tags">
         <span>Inventory Control</span><span>Demand Planning</span><span>Warehouse Ops</span>
         <span>Procurement</span><span>Vendor Mgmt</span><span>Cycle Counting</span>
         <span>SAP Systems</span><span>Reporting</span><span>Team Leadership</span>
@@ -411,33 +461,33 @@
   </section>
 
   <section id="experience">
-    <div class="sec-head"><span class="sec-num">02</span><div class="sec-title">Professional Experience</div><div class="sec-rule"></div></div>
+    <div class="sec-head"><span class="sec-num">02</span><div class="sec-title" data-i18n="sec_exp_title">Professional Experience</div><div class="sec-rule"></div></div>
 
     <div class="paper job">
-      <div class="job-head"><div class="job-title">Supply Chain &amp; Operations Manager</div><div class="job-dates">JAN 2025 – JUN 2026</div></div>
-      <div class="job-company">Royal Spirit General Trading LLC, UAE · Promoted from Sales Executive</div>
-      <div class="job-desc">Oversaw end-to-end supply chain functions — procurement, warehouse management, inventory control, and customer invoicing.</div>
+      <div class="job-head"><div class="job-title" data-i18n="job1_title">Supply Chain &amp; Operations Manager</div><div class="job-dates">JAN 2025 – JUN 2026</div></div>
+      <div class="job-company" data-i18n="job1_company">Royal Spirit General Trading LLC, UAE · Promoted from Sales Executive</div>
+      <div class="job-desc" data-i18n="job1_desc">Oversaw end-to-end supply chain functions — procurement, warehouse management, inventory control, and customer invoicing.</div>
 
-      <div class="cat"><div class="cat-label">Warehouse &amp; Operations</div>
-        <ul class="bullets">
+      <div class="cat"><div class="cat-label" data-i18n="job1_cat1_label">Warehouse &amp; Operations</div>
+        <ul class="bullets" data-i18n="job1_cat1_bullets">
           <li>Led a warehouse team of <b>9</b>, overseeing receiving, storage, picking, and dispatch of <b>2,000+</b> alcohol beverage SKUs.</li>
           <li>Coordinated with suppliers and drivers on on-time deliveries and resolved billing discrepancies promptly.</li>
         </ul>
       </div>
-      <div class="cat"><div class="cat-label">Procurement &amp; Purchasing</div>
-        <ul class="bullets">
+      <div class="cat"><div class="cat-label" data-i18n="job1_cat2_label">Procurement &amp; Purchasing</div>
+        <ul class="bullets" data-i18n="job1_cat2_bullets">
           <li>Managed a monthly purchasing budget of <b>AED 700,000</b>, securing <b>10–15%</b> cost reductions.</li>
           <li>Sourced goods from <b>10+</b> local vendors; processed Goods Receipt POs (GRPO) in SAP.</li>
         </ul>
       </div>
-      <div class="cat"><div class="cat-label">Inventory Management</div>
-        <ul class="bullets">
+      <div class="cat"><div class="cat-label" data-i18n="job1_cat3_label">Inventory Management</div>
+        <ul class="bullets" data-i18n="job1_cat3_bullets">
           <li>Improved inventory accuracy from <b>50% to 95%+</b> through cycle counts and real-time SAP monitoring.</li>
           <li>Synced physical warehouse and Shopify inventory in real time; managed SAP barcode/item-master updates.</li>
         </ul>
       </div>
-      <div class="cat"><div class="cat-label">Invoicing, Finance &amp; E-Commerce</div>
-        <ul class="bullets">
+      <div class="cat"><div class="cat-label" data-i18n="job1_cat4_label">Invoicing, Finance &amp; E-Commerce</div>
+        <ul class="bullets" data-i18n="job1_cat4_bullets">
           <li>Managed AR invoicing in SAP for bulk/corporate customers, ensuring accuracy and tax compliance.</li>
           <li>Prepared monthly COGS reports and weekly dashboards via Google Sheets automation.</li>
         </ul>
@@ -445,32 +495,32 @@
     </div>
 
     <div class="paper job">
-      <div class="job-head"><div class="job-title">Sales Executive</div><div class="job-dates">JUL 2024 – DEC 2024</div></div>
-      <div class="job-company">Royal Spirit General Trading LLC, UAE</div>
-      <div class="job-desc">Supported sales operations, product availability, and order placement.</div>
-      <ul class="bullets">
+      <div class="job-head"><div class="job-title" data-i18n="job2_title">Sales Executive</div><div class="job-dates">JUL 2024 – DEC 2024</div></div>
+      <div class="job-company" data-i18n="job2_company">Royal Spirit General Trading LLC, UAE</div>
+      <div class="job-desc" data-i18n="job2_desc">Supported sales operations, product availability, and order placement.</div>
+      <ul class="bullets" data-i18n="job2_bullets">
         <li>Developed automated reporting tools via Google Apps Script, reducing manual work by <b>80%</b>.</li>
         <li>Used SAP for invoices, quotations, sales orders, and inventory tracking; supervised a <b>20-rider</b> delivery team.</li>
       </ul>
       <div class="subroles">
         <div class="subrole">
-          <div class="subrole-title">Inventory Manager</div>
+          <div class="subrole-title" data-i18n="sub1_title">Inventory Manager</div>
           <div class="subrole-company">Blue Dot General Trading LLC</div>
-          <ul class="bullets"><li>Led inventory worth <b>AED 300,000</b> in total stock value.</li></ul>
+          <ul class="bullets" data-i18n="sub1_bullets"><li>Led inventory worth <b>AED 300,000</b> in total stock value.</li></ul>
         </div>
         <div class="subrole">
-          <div class="subrole-title">Events &amp; Inventory Coordinator</div>
+          <div class="subrole-title" data-i18n="sub2_title">Events &amp; Inventory Coordinator</div>
           <div class="subrole-company">Royal Spirit Entertainment</div>
-          <ul class="bullets"><li>Coordinated logistics for <b>30+</b> private and corporate events.</li></ul>
+          <ul class="bullets" data-i18n="sub2_bullets"><li>Coordinated logistics for <b>30+</b> private and corporate events.</li></ul>
         </div>
       </div>
     </div>
 
     <div class="paper job">
-      <div class="job-head"><div class="job-title">Store Manager</div><div class="job-dates">MAY 2022 – JUN 2024</div></div>
-      <div class="job-company">Aone Hair &amp; Beauty Salon, UAE</div>
-      <div class="job-desc">Oversaw daily store operations, P&amp;L, and staff administration.</div>
-      <ul class="bullets">
+      <div class="job-head"><div class="job-title" data-i18n="job3_title">Store Manager</div><div class="job-dates">MAY 2022 – JUN 2024</div></div>
+      <div class="job-company" data-i18n="job3_company">Aone Hair &amp; Beauty Salon, UAE</div>
+      <div class="job-desc" data-i18n="job3_desc">Oversaw daily store operations, P&amp;L, and staff administration.</div>
+      <ul class="bullets" data-i18n="job3_bullets">
         <li>Prepared P&amp;L statements and enforced cash control and security procedures.</li>
         <li>Coordinated with PRO services on Work Visas and Trade Licences; ensured full WPS compliance for payroll.</li>
       </ul>
@@ -478,57 +528,57 @@
   </section>
 
   <section id="skills">
-    <div class="sec-head"><span class="sec-num">03</span><div class="sec-title">Skills &amp; Systems</div><div class="sec-rule"></div></div>
+    <div class="sec-head"><span class="sec-num">03</span><div class="sec-title" data-i18n="sec_skills_title">Skills &amp; Systems</div><div class="sec-rule"></div></div>
     <div class="skills-grid">
       <div class="paper panel">
-        <div class="panel-title">Core Systems</div>
-        <div class="meter-item"><div class="meter-label">SAP Business One <small>Purchasing &amp; Inventory</small></div><div class="meter-track"><div class="meter-fill" data-fill="92%"></div></div></div>
-        <div class="meter-item"><div class="meter-label">Google Sheets <small>Advanced</small></div><div class="meter-track"><div class="meter-fill" data-fill="90%"></div></div></div>
-        <div class="meter-item"><div class="meter-label">Microsoft Excel <small>Intermediate–Advanced</small></div><div class="meter-track"><div class="meter-fill" data-fill="78%"></div></div></div>
-        <div class="meter-item"><div class="meter-label">Apps Script Automation <small>Workflow Tools</small></div><div class="meter-track"><div class="meter-fill" data-fill="80%"></div></div></div>
-        <div class="meter-note">Built automated reporting tools that cut manual reporting workload by 80%.</div>
+        <div class="panel-title" data-i18n="skills_core_title">Core Systems</div>
+        <div class="meter-item"><div class="meter-label" data-i18n="skill1_label">SAP Business One <small>Purchasing &amp; Inventory</small></div><div class="meter-track"><div class="meter-fill" data-fill="92%"></div></div></div>
+        <div class="meter-item"><div class="meter-label" data-i18n="skill2_label">Google Sheets <small>Advanced</small></div><div class="meter-track"><div class="meter-fill" data-fill="90%"></div></div></div>
+        <div class="meter-item"><div class="meter-label" data-i18n="skill3_label">Microsoft Excel <small>Intermediate–Advanced</small></div><div class="meter-track"><div class="meter-fill" data-fill="78%"></div></div></div>
+        <div class="meter-item"><div class="meter-label" data-i18n="skill4_label">Apps Script Automation <small>Workflow Tools</small></div><div class="meter-track"><div class="meter-fill" data-fill="80%"></div></div></div>
+        <div class="meter-note" data-i18n="skills_note">Built automated reporting tools that cut manual reporting workload by 80%.</div>
       </div>
       <div class="paper panel">
-        <div class="panel-title">Tools &amp; Platforms</div>
+        <div class="panel-title" data-i18n="tools_title">Tools &amp; Platforms</div>
         <div class="tool-list"><span>SAP ERP</span><span>Shopify</span><span>Zoho Mail</span><span>Focus ERP</span><span>WhatsApp Business</span><span>Canva</span></div>
-        <div class="panel-title">Languages</div>
+        <div class="panel-title" data-i18n="langs_title">Languages</div>
         <div class="lang-list">
-          <div><b>English</b><small>Fluent</small></div>
-          <div><b>Hindi</b><small>Fluent</small></div>
-          <div><b>Kannada</b><small>Native</small></div>
+          <div><b data-i18n="lang_en_name">English</b><small data-i18n="lang_fluent1">Fluent</small></div>
+          <div><b data-i18n="lang_hi_name">Hindi</b><small data-i18n="lang_fluent2">Fluent</small></div>
+          <div><b data-i18n="lang_kn_name">Kannada</b><small data-i18n="lang_native">Native</small></div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="credentials">
-    <div class="sec-head"><span class="sec-num">04</span><div class="sec-title">Certifications &amp; Education</div><div class="sec-rule"></div></div>
+    <div class="sec-head"><span class="sec-num">04</span><div class="sec-title" data-i18n="sec_cred_title">Certifications &amp; Education</div><div class="sec-rule"></div></div>
     <div class="two-col">
       <div class="paper panel">
-        <div class="panel-title">Certifications</div>
+        <div class="panel-title" data-i18n="certs_title">Certifications</div>
         <div class="cert-item">
           <div class="cert-badge-text">SAP</div>
-          <div><div class="cert-title">Managing Logistics in SAP Business One</div><div class="cert-issuer">SAP</div><a class="cert-verify" href="https://badger.learning.sap.com/verify/xagar-lytaf-horud-bypel-mamof" target="_blank" rel="noopener">Verify credential →</a></div>
+          <div><div class="cert-title" data-i18n="cert1_title">Managing Logistics in SAP Business One</div><div class="cert-issuer">SAP</div><a class="cert-verify" data-i18n="cert_verify" href="https://badger.learning.sap.com/verify/xagar-lytaf-horud-bypel-mamof" target="_blank" rel="noopener">Verify credential →</a></div>
         </div>
         <div class="cert-item">
           <div class="cert-badge-text">HP</div>
-          <div><div class="cert-title">AI for Business Professionals</div><div class="cert-issuer">HP LIFE · HP Foundation</div><a class="cert-verify" href="https://www.life-global.org/certificate/2cac0816-9c35-41f3-8ae8-e30cc6c83e6d" target="_blank" rel="noopener">Verify credential →</a></div>
+          <div><div class="cert-title" data-i18n="cert2_title">AI for Business Professionals</div><div class="cert-issuer">HP LIFE · HP Foundation</div><a class="cert-verify" data-i18n="cert_verify" href="https://www.life-global.org/certificate/2cac0816-9c35-41f3-8ae8-e30cc6c83e6d" target="_blank" rel="noopener">Verify credential →</a></div>
         </div>
       </div>
       <div class="paper panel">
-        <div class="panel-title">Education</div>
+        <div class="panel-title" data-i18n="edu_title">Education</div>
         <div class="edu-item"><div class="edu-degree">MCA</div><div class="edu-school">NMAM Institute of Technology</div><div class="edu-years">2019 – 2021</div></div>
-        <div class="edu-item"><div class="edu-degree">BSc Computer Science</div><div class="edu-school">ALVA'S Degree College</div><div class="edu-years">2016 – 2019</div></div>
+        <div class="edu-item"><div class="edu-degree" data-i18n="edu2_degree">BSc Computer Science</div><div class="edu-school">ALVA'S Degree College</div><div class="edu-years">2016 – 2019</div></div>
       </div>
     </div>
   </section>
 
   <section id="contact">
     <div class="paper contact-band">
-      <p class="kicker">Want the full CV on file? Ask the chatbot for today's download password.</p>
+      <p class="kicker" data-i18n="contact_kicker">Want the full CV on file? Ask the chatbot for today's download password.</p>
       <a class="btn btn-primary" style="background:var(--ink);" href="Deekshith_Naik_CV.pdf" download onclick="return checkDownloadPassword(event, 'footer-button')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        Download CV (PDF)
+        <span data-i18n="contact_btn">Download CV (PDF)</span>
       </a>
       <div class="contact-links">
         <a href="mailto:deenaik29@gmail.com">deenaik29@gmail.com</a>
@@ -539,7 +589,7 @@
   </section>
 </div>
 
-<footer>Deekshith Naik &middot; Supply Chain &amp; Operations &middot; Updated August 2026</footer>
+<footer data-i18n="footer_text">Deekshith Naik &middot; Supply Chain &amp; Operations &middot; Updated August 2026</footer>
 
 <button id="chat-toggle" aria-label="Ask about Deekshith's CV" onclick="toggleChat()">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
@@ -743,6 +793,230 @@
     trackDownload(source);
     return true;
   }
+
+  // ---------- LANGUAGE SWITCHER ----------
+  (function(){
+    var translations = {
+      ar: {
+        nav_about:"نبذة", nav_experience:"الخبرة", nav_skills:"المهارات", nav_credentials:"المؤهلات", nav_contact:"التواصل",
+        hero_eyebrow:"مدير سلسلة التوريد والعمليات", hero_joiner:"متاح للالتحاق الفوري",
+        hero_role:"دبي / أبوظبي، الإمارات العربية المتحدة",
+        hero_desc:"بناء عمليات مرنة وفعالة من حيث التكلفة عبر المشتريات والمستودعات والتجارة الإلكترونية — تحويل فوضى المخزون إلى دقة تتجاوز 95% والتقارير اليدوية إلى لوحات معلومات آلية.",
+        btn_download:"تحميل السيرة الذاتية", btn_view_exp:"عرض الخبرة",
+        stat_skus:"عدد الأصناف المُدارة", stat_budget:"الميزانية الشهرية", stat_accuracy:"دقة المخزون", stat_automated:"العمل المُؤتمت",
+        sec_about_title:"نبذة عامة",
+        about_summary:"مدير سلسلة توريد وعمليات ذو نتائج ملموسة، يتمتع بخبرة واسعة في <b>المشتريات</b> و<b>عمليات المستودعات</b> و<b>إدارة المخزون</b>. قدرة مثبتة على خفض تكاليف الشراء، وتبسيط عمليات المستودعات، والحفاظ على مخزون دقيق عبر القنوات المادية وقنوات التجزئة والتجارة الإلكترونية.",
+        about_tags:"<span>مراقبة المخزون</span><span>تخطيط الطلب</span><span>عمليات المستودعات</span><span>المشتريات</span><span>إدارة الموردين</span><span>الجرد الدوري</span><span>أنظمة SAP</span><span>إعداد التقارير</span><span>قيادة الفريق</span>",
+        sec_exp_title:"الخبرة المهنية",
+        job1_title:"مدير سلسلة التوريد والعمليات",
+        job1_company:"شركة رويال سبيريت للتجارة العامة، الإمارات · تمت الترقية من منصب مندوب مبيعات",
+        job1_desc:"الإشراف على وظائف سلسلة التوريد الشاملة — المشتريات وإدارة المستودعات ومراقبة المخزون وفوترة العملاء.",
+        job1_cat1_label:"المستودعات والعمليات",
+        job1_cat1_bullets:"<li>قيادة فريق مستودع مكوّن من <b>9</b> أفراد، والإشراف على استلام وتخزين وانتقاء وشحن أكثر من <b>2,000</b> صنف من المشروبات الكحولية.</li><li>التنسيق مع الموردين والسائقين لضمان التسليم في الوقت المحدد وحل خلافات الفوترة بسرعة.</li>",
+        job1_cat2_label:"المشتريات والشراء",
+        job1_cat2_bullets:"<li>إدارة ميزانية شراء شهرية بقيمة <b>700,000 درهم إماراتي</b>، وتحقيق خفض في التكاليف بنسبة <b>10–15%</b>.</li><li>توريد البضائع من أكثر من <b>10</b> موردين محليين؛ معالجة أوامر استلام البضائع (GRPO) في نظام SAP.</li>",
+        job1_cat3_label:"إدارة المخزون",
+        job1_cat3_bullets:"<li>تحسين دقة المخزون من <b>50% إلى أكثر من 95%</b> من خلال الجرد الدوري والمراقبة اللحظية عبر SAP.</li><li>مزامنة مخزون المستودع الفعلي مع Shopify في الوقت الفعلي؛ إدارة تحديثات الباركود وبيانات الأصناف في SAP.</li>",
+        job1_cat4_label:"الفوترة والمالية والتجارة الإلكترونية",
+        job1_cat4_bullets:"<li>إدارة فوترة الذمم المدينة في SAP للعملاء بالجملة والشركات، مع ضمان الدقة والامتثال الضريبي.</li><li>إعداد تقارير تكلفة البضاعة المباعة الشهرية ولوحات المخزون الأسبوعية عبر أتمتة Google Sheets.</li>",
+        job2_title:"مندوب مبيعات", job2_company:"شركة رويال سبيريت للتجارة العامة، الإمارات",
+        job2_desc:"دعم عمليات المبيعات وتوافر المنتجات وتنفيذ الطلبات.",
+        job2_bullets:"<li>تطوير أدوات تقارير آلية باستخدام Google Apps Script، ما قلّص العمل اليدوي بنسبة <b>80%</b>.</li><li>استخدام SAP للفواتير وعروض الأسعار وأوامر البيع وتتبع المخزون؛ والإشراف على فريق توصيل من <b>20</b> سائقًا.</li>",
+        sub1_title:"مدير المخزون", sub1_bullets:"<li>قيادة مخزون بقيمة إجمالية بلغت <b>300,000 درهم إماراتي</b>.</li>",
+        sub2_title:"منسق الفعاليات والمخزون", sub2_bullets:"<li>تنسيق الخدمات اللوجستية لأكثر من <b>30</b> فعالية خاصة وشركاتية.</li>",
+        job3_title:"مدير", job3_company:"صالون آ وان للشعر والتجميل، الإمارات",
+        job3_desc:"الإشراف على العمليات اليومية للمتجر والأرباح والخسائر وإدارة الموظفين.",
+        job3_bullets:"<li>إعداد بيانات الأرباح والخسائر وتطبيق إجراءات ضبط النقد والأمن.</li><li>التنسيق مع خدمات العلاقات الحكومية بشأن تأشيرات العمل والرخص التجارية؛ وضمان الامتثال الكامل لنظام حماية الأجور (WPS).</li>",
+        sec_skills_title:"المهارات والأنظمة", skills_core_title:"الأنظمة الأساسية",
+        skill1_label:"SAP Business One <small>المشتريات والمخزون</small>",
+        skill2_label:"Google Sheets <small>متقدم</small>",
+        skill3_label:"Microsoft Excel <small>متوسط إلى متقدم</small>",
+        skill4_label:"أتمتة Apps Script <small>أدوات سير العمل</small>",
+        skills_note:"طوّر أدوات تقارير آلية قلّصت عبء إعداد التقارير اليدوية بنسبة 80%.",
+        tools_title:"الأدوات والمنصات", langs_title:"اللغات",
+        lang_en_name:"الإنجليزية", lang_fluent1:"طلاقة", lang_hi_name:"الهندية", lang_fluent2:"طلاقة",
+        lang_kn_name:"الكانادية", lang_native:"لغة أم",
+        sec_cred_title:"الشهادات والتعليم", certs_title:"الشهادات",
+        cert1_title:"إدارة اللوجستيات في SAP Business One", cert_verify:"التحقق من الشهادة ←",
+        cert2_title:"الذكاء الاصطناعي لمحترفي الأعمال", edu_title:"التعليم", edu2_degree:"بكالوريوس علوم الحاسوب",
+        contact_kicker:"هل ترغب بالحصول على السيرة الذاتية الكاملة؟ اسأل روبوت المحادثة عن كلمة مرور التحميل لهذا اليوم.",
+        contact_btn:"تحميل السيرة الذاتية (PDF)",
+        footer_text:"ديكشيث نايك · سلسلة التوريد والعمليات · آخر تحديث أغسطس 2026"
+      },
+      hi: {
+        nav_about:"परिचय", nav_experience:"अनुभव", nav_skills:"कौशल", nav_credentials:"प्रमाणपत्र", nav_contact:"संपर्क करें",
+        hero_eyebrow:"सप्लाई चेन एवं ऑपरेशंस मैनेजर", hero_joiner:"तुरंत ज्वाइन करने के लिए उपलब्ध",
+        hero_role:"दुबई / अबू धाबी, यूएई",
+        hero_desc:"खरीद, वेयरहाउसिंग और ई-कॉमर्स में मजबूत, किफ़ायती संचालन का निर्माण — इन्वेंट्री की अव्यवस्था को 95%+ सटीकता में और मैन्युअल रिपोर्ट्स को स्वचालित डैशबोर्ड में बदलना।",
+        btn_download:"सीवी डाउनलोड करें", btn_view_exp:"अनुभव देखें",
+        stat_skus:"प्रबंधित SKU", stat_budget:"मासिक बजट", stat_accuracy:"इन्वेंट्री सटीकता", stat_automated:"स्वचालित कार्य",
+        sec_about_title:"सारांश",
+        about_summary:"<b>खरीद</b>, <b>वेयरहाउस संचालन</b>, और <b>इन्वेंट्री प्रबंधन</b> में व्यापक अनुभव रखने वाले परिणामोन्मुख सप्लाई चेन एवं ऑपरेशंस मैनेजर। खरीद लागत को अनुकूलित करने, वेयरहाउस प्रक्रियाओं को सुव्यवस्थित करने, तथा फिजिकल, रिटेल और ई-कॉमर्स चैनलों में सटीक इन्वेंट्री नियंत्रण बनाए रखने में सिद्ध क्षमता।",
+        about_tags:"<span>इन्वेंट्री नियंत्रण</span><span>मांग योजना</span><span>वेयरहाउस संचालन</span><span>खरीद</span><span>वेंडर प्रबंधन</span><span>साइकिल काउंटिंग</span><span>SAP सिस्टम</span><span>रिपोर्टिंग</span><span>टीम लीडरशिप</span>",
+        sec_exp_title:"व्यावसायिक अनुभव",
+        job1_title:"सप्लाई चेन एवं ऑपरेशंस मैनेजर",
+        job1_company:"रॉयल स्पिरिट जनरल ट्रेडिंग एलएलसी, यूएई · सेल्स एग्ज़िक्यूटिव से प्रमोट",
+        job1_desc:"खरीद, वेयरहाउस प्रबंधन, इन्वेंट्री नियंत्रण और ग्राहक इनवॉइसिंग सहित एंड-टू-एंड सप्लाई चेन कार्यों की देखरेख।",
+        job1_cat1_label:"वेयरहाउस और संचालन",
+        job1_cat1_bullets:"<li><b>9</b> सदस्यों की वेयरहाउस टीम का नेतृत्व, <b>2,000+</b> एल्कोहॉल बेवरेज SKU की प्राप्ति, भंडारण, पिकिंग और डिस्पैच की देखरेख।</li><li>समय पर डिलीवरी हेतु आपूर्तिकर्ताओं और ड्राइवरों के साथ समन्वय, और बिलिंग विसंगतियों का त्वरित समाधान।</li>",
+        job1_cat2_label:"खरीद और परचेजिंग",
+        job1_cat2_bullets:"<li><b>AED 700,000</b> के मासिक खरीद बजट का प्रबंधन, <b>10–15%</b> लागत में कमी सुनिश्चित करना।</li><li><b>10+</b> स्थानीय वेंडरों से माल की सोर्सिंग; SAP में गुड्स रिसीप्ट PO (GRPO) प्रोसेस करना।</li>",
+        job1_cat3_label:"इन्वेंट्री प्रबंधन",
+        job1_cat3_bullets:"<li>साइकिल काउंट और रियल-टाइम SAP मॉनिटरिंग के ज़रिए इन्वेंट्री सटीकता को <b>50% से 95%+</b> तक सुधारना।</li><li>फिजिकल वेयरहाउस और Shopify इन्वेंट्री को रियल-टाइम में सिंक करना; SAP बारकोड/आइटम-मास्टर अपडेट करना।</li>",
+        job1_cat4_label:"इनवॉइसिंग, वित्त एवं ई-कॉमर्स",
+        job1_cat4_bullets:"<li>बल्क/कॉर्पोरेट ग्राहकों के लिए SAP में AR इनवॉइसिंग का प्रबंधन, सटीकता और टैक्स अनुपालन सुनिश्चित करना।</li><li>Google Sheets ऑटोमेशन के ज़रिए मासिक COGS रिपोर्ट और साप्ताहिक इन्वेंट्री डैशबोर्ड तैयार करना।</li>",
+        job2_title:"सेल्स एग्ज़िक्यूटिव", job2_company:"रॉयल स्पिरिट जनरल ट्रेडिंग एलएलसी, यूएई",
+        job2_desc:"बिक्री संचालन, उत्पाद उपलब्धता और ऑर्डर प्लेसमेंट में सहयोग।",
+        job2_bullets:"<li>Google Apps Script के ज़रिए स्वचालित रिपोर्टिंग टूल विकसित किए, जिससे मैन्युअल कार्य में <b>80%</b> की कमी आई।</li><li>इनवॉइस, कोटेशन, सेल्स ऑर्डर और इन्वेंट्री ट्रैकिंग के लिए SAP का उपयोग; <b>20-राइडर</b> डिलीवरी टीम की देखरेख।</li>",
+        sub1_title:"इन्वेंट्री मैनेजर", sub1_bullets:"<li><b>AED 300,000</b> मूल्य के कुल स्टॉक का नेतृत्व।</li>",
+        sub2_title:"इवेंट्स एवं इन्वेंट्री कोऑर्डिनेटर", sub2_bullets:"<li><b>30+</b> निजी और कॉर्पोरेट इवेंट्स के लिए लॉजिस्टिक्स का समन्वय।</li>",
+        job3_title:"मैनेजर", job3_company:"अ-वन हेयर एंड ब्यूटी सैलून, यूएई",
+        job3_desc:"दैनिक स्टोर संचालन, P&L, और स्टाफ प्रशासन की देखरेख।",
+        job3_bullets:"<li>P&L स्टेटमेंट तैयार करना और कैश कंट्रोल एवं सुरक्षा प्रक्रियाओं को लागू करना।</li><li>वर्क वीज़ा और ट्रेड लाइसेंस के लिए PRO सेवाओं के साथ समन्वय; पेरोल हेतु पूर्ण WPS अनुपालन सुनिश्चित करना।</li>",
+        sec_skills_title:"कौशल और सिस्टम", skills_core_title:"कोर सिस्टम",
+        skill1_label:"SAP Business One <small>परचेजिंग एवं इन्वेंट्री</small>",
+        skill2_label:"Google Sheets <small>एडवांस्ड</small>",
+        skill3_label:"Microsoft Excel <small>इंटरमीडिएट–एडवांस्ड</small>",
+        skill4_label:"Apps Script ऑटोमेशन <small>वर्कफ़्लो टूल्स</small>",
+        skills_note:"ऐसे स्वचालित रिपोर्टिंग टूल बनाए जिन्होंने मैन्युअल रिपोर्टिंग कार्यभार को 80% तक कम कर दिया।",
+        tools_title:"टूल्स और प्लेटफॉर्म", langs_title:"भाषाएँ",
+        lang_en_name:"अंग्रेज़ी", lang_fluent1:"धाराप्रवाह", lang_hi_name:"हिंदी", lang_fluent2:"धाराप्रवाह",
+        lang_kn_name:"कन्नड़", lang_native:"मातृभाषा",
+        sec_cred_title:"प्रमाणपत्र और शिक्षा", certs_title:"प्रमाणपत्र",
+        cert1_title:"SAP Business One में लॉजिस्टिक्स प्रबंधन", cert_verify:"प्रमाणपत्र सत्यापित करें →",
+        cert2_title:"व्यावसायिक पेशेवरों के लिए AI", edu_title:"शिक्षा", edu2_degree:"बीएससी कंप्यूटर साइंस",
+        contact_kicker:"पूरी सीवी चाहिए? आज के डाउनलोड पासवर्ड के लिए चैटबॉट से पूछें।",
+        contact_btn:"सीवी डाउनलोड करें (PDF)",
+        footer_text:"दीक्षित नाइक · सप्लाई चेन एवं ऑपरेशंस · अगस्त 2026 में अपडेट किया गया"
+      },
+      ru: {
+        nav_about:"Обо мне", nav_experience:"Опыт", nav_skills:"Навыки", nav_credentials:"Сертификаты", nav_contact:"Контакты",
+        hero_eyebrow:"Менеджер по цепочке поставок и операциям", hero_joiner:"Готов приступить немедленно",
+        hero_role:"Дубай / Абу-Даби, ОАЭ",
+        hero_desc:"Выстраиваю устойчивые и экономически эффективные операции в закупках, складской логистике и электронной коммерции — превращая хаос в управлении запасами в точность свыше 95%, а ручные отчёты — в автоматизированные дашборды.",
+        btn_download:"Скачать резюме", btn_view_exp:"Посмотреть опыт",
+        stat_skus:"SKU под управлением", stat_budget:"Ежемесячный бюджет", stat_accuracy:"Точность запасов", stat_automated:"Автоматизировано работы",
+        sec_about_title:"Резюме",
+        about_summary:"Результативный менеджер по цепочке поставок и операциям с обширным опытом в <b>закупках</b>, <b>складских операциях</b> и <b>управлении запасами</b>. Доказанная способность оптимизировать затраты на закупки, упрощать складские процессы и поддерживать точный контроль запасов в физических, розничных и электронных каналах.",
+        about_tags:"<span>Контроль запасов</span><span>Планирование спроса</span><span>Складские операции</span><span>Закупки</span><span>Управление поставщиками</span><span>Циклический пересчёт</span><span>Системы SAP</span><span>Отчётность</span><span>Управление командой</span>",
+        sec_exp_title:"Профессиональный опыт",
+        job1_title:"Менеджер по цепочке поставок и операциям",
+        job1_company:"Royal Spirit General Trading LLC, ОАЭ · Повышение с должности менеджера по продажам",
+        job1_desc:"Курировал сквозные функции цепочки поставок — закупки, управление складом, контроль запасов и выставление счетов клиентам.",
+        job1_cat1_label:"Склад и операции",
+        job1_cat1_bullets:"<li>Руководил складской командой из <b>9</b> человек, отвечая за приёмку, хранение, комплектацию и отгрузку более <b>2 000</b> позиций алкогольной продукции.</li><li>Координировал работу с поставщиками и водителями для своевременных поставок, оперативно устранял расхождения в счетах.</li>",
+        job1_cat2_label:"Закупки и снабжение",
+        job1_cat2_bullets:"<li>Управлял ежемесячным бюджетом закупок в размере <b>700 000 AED</b>, добиваясь снижения затрат на <b>10–15%</b>.</li><li>Осуществлял поставки от более чем <b>10</b> локальных поставщиков; оформлял приходные ордера (GRPO) в SAP.</li>",
+        job1_cat3_label:"Управление запасами",
+        job1_cat3_bullets:"<li>Повысил точность учёта запасов с <b>50% до 95%+</b> благодаря циклическим пересчётам и мониторингу в реальном времени через SAP.</li><li>Синхронизировал физический склад и запасы Shopify в реальном времени; обновлял штрих-коды и карточки товаров в SAP.</li>",
+        job1_cat4_label:"Выставление счетов, финансы и электронная коммерция",
+        job1_cat4_bullets:"<li>Управлял дебиторской задолженностью и выставлением счетов в SAP для оптовых и корпоративных клиентов, обеспечивая точность и налоговое соответствие.</li><li>Готовил ежемесячные отчёты по себестоимости (COGS) и еженедельные дашборды запасов с помощью автоматизации Google Sheets.</li>",
+        job2_title:"Менеджер по продажам", job2_company:"Royal Spirit General Trading LLC, ОАЭ",
+        job2_desc:"Поддерживал операции продаж, наличие товаров и оформление заказов.",
+        job2_bullets:"<li>Разработал инструменты автоматической отчётности на Google Apps Script, сократив ручной труд на <b>80%</b>.</li><li>Использовал SAP для счетов, коммерческих предложений, заказов на продажу и учёта запасов; курировал команду доставки из <b>20 курьеров</b>.</li>",
+        sub1_title:"Менеджер по запасам", sub1_bullets:"<li>Управлял запасами общей стоимостью <b>300 000 AED</b>.</li>",
+        sub2_title:"Координатор мероприятий и запасов", sub2_bullets:"<li>Координировал логистику для более чем <b>30</b> частных и корпоративных мероприятий.</li>",
+        job3_title:"Менеджер", job3_company:"Aone Hair & Beauty Salon, ОАЭ",
+        job3_desc:"Курировал ежедневную работу магазина, отчёт о прибылях и убытках и кадровое администрирование.",
+        job3_bullets:"<li>Готовил отчёты о прибылях и убытках, обеспечивал контроль наличности и соблюдение процедур безопасности.</li><li>Взаимодействовал со службами PRO по рабочим визам и торговым лицензиям; обеспечивал полное соответствие требованиям WPS по расчёту зарплаты.</li>",
+        sec_skills_title:"Навыки и системы", skills_core_title:"Основные системы",
+        skill1_label:"SAP Business One <small>Закупки и запасы</small>",
+        skill2_label:"Google Sheets <small>Продвинутый уровень</small>",
+        skill3_label:"Microsoft Excel <small>Средний–продвинутый</small>",
+        skill4_label:"Автоматизация Apps Script <small>Инструменты рабочих процессов</small>",
+        skills_note:"Разработал инструменты автоматической отчётности, сократившие объём ручной отчётности на 80%.",
+        tools_title:"Инструменты и платформы", langs_title:"Языки",
+        lang_en_name:"Английский", lang_fluent1:"Свободно", lang_hi_name:"Хинди", lang_fluent2:"Свободно",
+        lang_kn_name:"Каннада", lang_native:"Родной",
+        sec_cred_title:"Сертификаты и образование", certs_title:"Сертификаты",
+        cert1_title:"Управление логистикой в SAP Business One", cert_verify:"Проверить сертификат →",
+        cert2_title:"ИИ для бизнес-профессионалов", edu_title:"Образование", edu2_degree:"Бакалавр компьютерных наук",
+        contact_kicker:"Нужно полное резюме? Спросите у чат-бота пароль для скачивания на сегодня.",
+        contact_btn:"Скачать резюме (PDF)",
+        footer_text:"Дикшит Наик · Цепочка поставок и операции · Обновлено в августе 2026"
+      },
+      ur: {
+        nav_about:"تعارف", nav_experience:"تجربہ", nav_skills:"مہارتیں", nav_credentials:"اسناد", nav_contact:"رابطہ",
+        hero_eyebrow:"سپلائی چین اینڈ آپریشنز مینیجر", hero_joiner:"فوری شمولیت کے لیے دستیاب",
+        hero_role:"دبئی / ابوظبی، متحدہ عرب امارات",
+        hero_desc:"خریداری، گودام داری اور ای کامرس میں مضبوط اور کفایتی آپریشنز کی تعمیر — انوینٹری کی بے ترتیبی کو 95%+ درستگی میں اور دستی رپورٹس کو خودکار ڈیش بورڈز میں تبدیل کرنا۔",
+        btn_download:"سی وی ڈاؤن لوڈ کریں", btn_view_exp:"تجربہ دیکھیں",
+        stat_skus:"منظم کردہ SKUs", stat_budget:"ماہانہ بجٹ", stat_accuracy:"انوینٹری کی درستگی", stat_automated:"خودکار کام",
+        sec_about_title:"خلاصہ",
+        about_summary:"نتیجہ خیز سپلائی چین اینڈ آپریشنز مینیجر جسے <b>خریداری</b>، <b>گودام کے آپریشنز</b> اور <b>انوینٹری کے انتظام</b> میں وسیع تجربہ حاصل ہے۔ خریداری کے اخراجات کو بہتر بنانے، گودام کے عمل کو آسان بنانے، اور فزیکل، ریٹیل اور ای کامرس چینلز میں درست انوینٹری کنٹرول برقرار رکھنے کی ثابت شدہ صلاحیت۔",
+        about_tags:"<span>انوینٹری کنٹرول</span><span>ڈیمانڈ پلاننگ</span><span>گودام آپریشنز</span><span>خریداری</span><span>وینڈر مینجمنٹ</span><span>سائیکل کاؤنٹنگ</span><span>SAP سسٹمز</span><span>رپورٹنگ</span><span>ٹیم لیڈرشپ</span>",
+        sec_exp_title:"پیشہ ورانہ تجربہ",
+        job1_title:"سپلائی چین اینڈ آپریشنز مینیجر",
+        job1_company:"رائل اسپرٹ جنرل ٹریڈنگ ایل ایل سی، یو اے ای · سیلز ایگزیکٹو سے ترقی پائی",
+        job1_desc:"خریداری، گودام کے انتظام، انوینٹری کنٹرول اور کسٹمر انوائسنگ سمیت سپلائی چین کے مکمل افعال کی نگرانی کی۔",
+        job1_cat1_label:"گودام اور آپریشنز",
+        job1_cat1_bullets:"<li><b>9</b> افراد پر مشتمل گودام ٹیم کی قیادت کی، <b>2,000+</b> الکوحل مشروبات کی اشیاء کی وصولی، ذخیرہ اندوزی، چنائی اور ترسیل کی نگرانی کی۔</li><li>بروقت ترسیل کے لیے سپلائرز اور ڈرائیورز کے ساتھ ہم آہنگی کی اور بلنگ کے تضادات کو فوری طور پر حل کیا۔</li>",
+        job1_cat2_label:"خریداری اور پروکیورمنٹ",
+        job1_cat2_bullets:"<li><b>AED 700,000</b> کے ماہانہ خریداری بجٹ کا انتظام کیا، <b>10–15%</b> لاگت میں کمی حاصل کی۔</li><li><b>10+</b> مقامی وینڈرز سے سامان حاصل کیا؛ SAP میں گڈز رسیپٹ POs (GRPO) پروسیس کیے۔</li>",
+        job1_cat3_label:"انوینٹری کا انتظام",
+        job1_cat3_bullets:"<li>سائیکل کاؤنٹس اور SAP کی ریئل ٹائم نگرانی کے ذریعے انوینٹری کی درستگی <b>50% سے 95%+</b> تک بہتر کی۔</li><li>فزیکل گودام اور Shopify انوینٹری کو ریئل ٹائم میں ہم آہنگ کیا؛ SAP بار کوڈ/آئٹم ماسٹر اپ ڈیٹس کا انتظام کیا۔</li>",
+        job1_cat4_label:"انوائسنگ، فنانس اور ای کامرس",
+        job1_cat4_bullets:"<li>بلک/کارپوریٹ کسٹمرز کے لیے SAP میں AR انوائسنگ کا انتظام کیا، درستگی اور ٹیکس کی تعمیل کو یقینی بنایا۔</li><li>Google Sheets آٹومیشن کے ذریعے ماہانہ COGS رپورٹس اور ہفتہ وار انوینٹری ڈیش بورڈز تیار کیے۔</li>",
+        job2_title:"سیلز ایگزیکٹو", job2_company:"رائل اسپرٹ جنرل ٹریڈنگ ایل ایل سی، یو اے ای",
+        job2_desc:"سیلز آپریشنز، پروڈکٹ کی دستیابی اور آرڈر کی جگہ کاری میں معاونت کی۔",
+        job2_bullets:"<li>Google Apps Script کے ذریعے خودکار رپورٹنگ ٹولز تیار کیے، جس سے دستی کام میں <b>80%</b> کمی آئی۔</li><li>انوائسز، کوٹیشنز، سیلز آرڈرز اور انوینٹری ٹریکنگ کے لیے SAP استعمال کیا؛ <b>20 رائیڈرز</b> کی ڈیلیوری ٹیم کی نگرانی کی۔</li>",
+        sub1_title:"انوینٹری مینیجر", sub1_bullets:"<li><b>AED 300,000</b> مالیت کے کل اسٹاک کی قیادت کی۔</li>",
+        sub2_title:"ایونٹس اینڈ انوینٹری کوآرڈینیٹر", sub2_bullets:"<li><b>30+</b> نجی اور کارپوریٹ ایونٹس کے لیے لاجسٹکس کی ہم آہنگی کی۔</li>",
+        job3_title:"مینیجر", job3_company:"اے ون ہیئر اینڈ بیوٹی سیلون، یو اے ای",
+        job3_desc:"روزانہ اسٹور کے آپریشنز، P&L اور اسٹاف کی انتظامیہ کی نگرانی کی۔",
+        job3_bullets:"<li>P&L بیانات تیار کیے اور کیش کنٹرول اور سیکیورٹی کے طریقہ کار نافذ کیے۔</li><li>ورک ویزوں اور ٹریڈ لائسنسوں کے لیے PRO خدمات کے ساتھ ہم آہنگی کی؛ پے رول کے لیے مکمل WPS تعمیل کو یقینی بنایا۔</li>",
+        sec_skills_title:"مہارتیں اور نظام", skills_core_title:"بنیادی نظام",
+        skill1_label:"SAP Business One <small>خریداری اور انوینٹری</small>",
+        skill2_label:"Google Sheets <small>ایڈوانسڈ</small>",
+        skill3_label:"Microsoft Excel <small>انٹرمیڈیٹ–ایڈوانسڈ</small>",
+        skill4_label:"Apps Script آٹومیشن <small>ورک فلو ٹولز</small>",
+        skills_note:"ایسے خودکار رپورٹنگ ٹولز بنائے جنہوں نے دستی رپورٹنگ کے کام کو 80% تک کم کیا۔",
+        tools_title:"ٹولز اور پلیٹ فارمز", langs_title:"زبانیں",
+        lang_en_name:"انگریزی", lang_fluent1:"روانی", lang_hi_name:"ہندی", lang_fluent2:"روانی",
+        lang_kn_name:"کنڑ", lang_native:"مادری زبان",
+        sec_cred_title:"اسناد اور تعلیم", certs_title:"اسناد",
+        cert1_title:"SAP Business One میں لاجسٹکس کا انتظام", cert_verify:"سند کی تصدیق کریں ←",
+        cert2_title:"بزنس پروفیشنلز کے لیے AI", edu_title:"تعلیم", edu2_degree:"بی ایس سی کمپیوٹر سائنس",
+        contact_kicker:"مکمل سی وی چاہیے؟ آج کے ڈاؤن لوڈ پاس ورڈ کے لیے چیٹ بوٹ سے پوچھیں۔",
+        contact_btn:"سی وی ڈاؤن لوڈ کریں (PDF)",
+        footer_text:"دیکشیت نائیک · سپلائی چین اینڈ آپریشنز · اگست 2026 میں اپ ڈیٹ کیا گیا"
+      }
+    };
+
+    var i18nEls = {};
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (!i18nEls[key]) i18nEls[key] = [];
+      i18nEls[key].push(el);
+    });
+    var enCache = {};
+    Object.keys(i18nEls).forEach(function(k){ enCache[k] = i18nEls[k][0].innerHTML; });
+    translations.en = enCache;
+
+    function applyLang(code){
+      var dict = translations[code] || translations.en;
+      Object.keys(i18nEls).forEach(function(key){
+        var val = (dict[key] !== undefined) ? dict[key] : translations.en[key];
+        i18nEls[key].forEach(function(el){ el.innerHTML = val; });
+      });
+      document.documentElement.lang = code;
+      document.documentElement.dir = (code === 'ar' || code === 'ur') ? 'rtl' : 'ltr';
+      document.body.className = document.body.className.replace(/lang-\S+/g, '').trim();
+      document.body.classList.add('lang-' + code);
+      document.querySelectorAll('.lang-switch button').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-lang') === code);
+      });
+      try { localStorage.setItem('site_lang', code); } catch (e) {}
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+    });
+
+    var saved = null;
+    try { saved = localStorage.getItem('site_lang'); } catch (e) {}
+    if (saved && translations[saved]) applyLang(saved);
+  })();
 </script>
 </body>
 </html>
